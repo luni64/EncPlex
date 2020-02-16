@@ -1,3 +1,6 @@
+# Misc
+*.?#*
+
 # Prerequisites
 *.d
 
