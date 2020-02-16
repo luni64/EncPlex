@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "EncPlex74165.h"
+#include "EncPlex.h"
 
 constexpr unsigned encoderCount = 4; // number of attached  (daisy chain shift regesters for more than 8)
 
@@ -26,7 +26,7 @@ void loop()
     {
         for (unsigned i = 0; i < encoderCount; i++)
         {
-            Serial.printf("E%u:%3d ", i, encoders.read(i));
+            Serial.printf("E%u:%3d ", i, encoders[i].read());
         }
         Serial.println();
         stopwatch = 0;
