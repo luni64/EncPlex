@@ -16,12 +16,12 @@ void EncPlex74165::begin()
     pinMode(LD, OUTPUT);
     pinMode(CLK, OUTPUT);
 
-    pinMode(12, OUTPUT);
+    //pinMode(12, OUTPUT);
 }
 
 void EncPlex74165::tick()
 {
-    digitalWriteFast(12, HIGH);
+    //digitalWriteFast(12, HIGH);
 
     // load current values to shift register
     digitalWriteFast(LD, LOW);
@@ -43,5 +43,5 @@ void EncPlex74165::tick()
         digitalWriteFast(CLK, LOW);
     }
 
-    digitalWriteFast(12, LOW);
+    //digitalWriteFast(12, LOW);
 }
