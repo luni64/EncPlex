@@ -15,7 +15,7 @@ namespace PollingEncoder
         {
             last = current;
             raw += (diff & 2) - 1;
-
+          
             if (raw >> 2 != value)
             {
                 value = raw >> 2;
