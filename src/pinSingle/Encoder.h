@@ -10,7 +10,7 @@ namespace PollingEncoder
     {
      public:
         //Constructor takes two pin numbers for phase A and B and an optional pin mode. E.g. INPUT_PULLUP or INPUT_PULLDOWN
-        inline Encoder(int pinA, int pinB, int mode = INPUT);
+        inline Encoder(int pinA, int pinB, int mode = INPUT_PULLUP);
 
         //begin() is optional and only required if some other code grabs the pins after construction of the encoder.
         inline void begin();
