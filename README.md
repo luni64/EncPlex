@@ -1,5 +1,5 @@
 # EncPlex
-EncPlex is a small Arduino library for reading **rotary encoders**. It works with encoders **connected directly** to digital pins and with encoders **connected via a multiplexer**. Unlike most other libraries, EncPlex uses a **polling algorithm** that generates a predictable processor load and is completely **insensitive to contact bounce**. 
+EncPlex is a small Arduino library for reading **rotary encoders**. It works with encoders **connected directly** to digital pins and with encoders **connected via a multiplexer**. Unlike most other libraries, EncPlex uses a **polling algorithm** that generates a predictable processor load and is completely **insensitive to contact bounce**.
 
 **Contents**
 <!-- vscode-markdown-toc -->
@@ -21,10 +21,13 @@ EncPlex is a small Arduino library for reading **rotary encoders**. It works wit
 
 
 ## <a name='Prerequisites'></a>Prerequisites
-EncPlex currently works with the [ARM based PJRC Teensy boards](https://www.pjrc.com/teensy/) T-LC and T3.0 - T4.0. It is mainly aimed at manually operated, mechanical encoders, but also works with motor-driven optical encoders. However, for high speed encoders specialized libraries like the QUAD-Encoder-Library from mjs513 (https://github.com/mjs513/Teensy-4.x-Quad-Encoder-Library).
+EncPlex is written for the [ARM based PJRC Teensy boards](https://www.pjrc.com/teensy/) T-LC and T3.0 - T4.0. It is mainly aimed at manually operated, mechanical encoders, but also works with motor-driven optical encoders. However, for high speed encoders specialized libraries like the QUAD-Encoder-Library from mjs513 (https://github.com/mjs513/Teensy-4.x-Quad-Encoder-Library) might be a better choice.
 
+The extras folder of this repo contains [detailed information](extras/README.md) and production files for a few test boards. You can also use readily available multiplexer breakout boards for experimenting. Here an example of a compact assembly using two SparkFun BOB-09056 boards (https://www.sparkfun.com/products/9056)
 
-## <a name='Usage'></a>Usage
+![](extras/Boards/MPX_4067/assembly3d.jpg)
+
+## <a name='Usage'></a>Usage of the Library
 
 ### <a name='DirectlyConnectedEncoders'></a>Directly Connected Encoders
 
@@ -45,7 +48,7 @@ void loop()
   encoder.tick();            // call tick as often as possible (usually 1-2kHz)
 
   int pos = encoder.read();  // get current value
-  if (pos != oldPos)         // print if changed  
+  if (pos != oldPos)         // print if changed
   {
     Serial.print("pos: ");
     Serial.println(pos);
@@ -55,7 +58,7 @@ void loop()
 ```
 
 ### <a name='ArrayofEncoders'></a>Array of Encoders
-In case you need to read out a lot of encoders it might be a good idea to use an encoder array to handle them. 
+In case you need to read out a lot of encoders it might be a good idea to use an encoder array to handle them.
 
 ```c++
 #include "EncPlex.h"
@@ -73,7 +76,7 @@ void tickAll()
 }
 
 void setup()
-{   
+{
    (new IntervalTimer)->begin(tickAll, 500); //2kHz, let an IntervalTimer do the tick work in the background...
 }
 
@@ -87,14 +90,14 @@ void loop()
         Serial.printf("Encoder: %d pos: %d\n",i, pos);
         oldPos[i] = pos;
       }
-  }  
+  }
 }
 
 ```
 
 ### <a name='Multiplexing'></a>Multiplexed Encoders
 
-If you have more encoders than free pins you can think of multiplexing them. EncPlex can be extended easily to support any multiplexer hardware you want to use. To demonstrate how that works, EncPlex contains two example classes. One handles multiplexing with two standard 8bit shift registers (74HC165), the other uses the readily available 16bit multiplexer CD74HC4067. 
+If you have more encoders than free pins you can think of multiplexing them. EncPlex can be extended easily to support any multiplexer hardware you want to use. To demonstrate how that works, EncPlex contains two example classes. One handles multiplexing with two standard 8bit shift registers (74HC165), the other uses the readily available 16bit multiplexer CD74HC4067.
 
 #### <a name='UsingShiftRegisters74HC165'></a>Using Shift Registers 74HC165
 
