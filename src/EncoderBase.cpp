@@ -1,4 +1,5 @@
 #include "EncoderBase.h"
+#include "Arduino.h"
 #include "core_pins.h"
 
 namespace PollingEncoder
@@ -15,10 +16,16 @@ namespace PollingEncoder
         {
             last = current;
             raw += (diff & 2) - 1;
-          
-            if (raw >> 2 != value)
+
+            if (limit)
             {
-                value = raw >> 2;
+                raw = std::min(max, std::max(min, raw));
+            }
+
+            int32_t newVal = raw >> spr;
+            if (newVal != value)
+            {
+                value = newVal;
                 if (callback != nullptr)
                 {
                     callback(value);
@@ -27,5 +34,19 @@ namespace PollingEncoder
             }
         }
         return false;
+    }
+
+    void EncoderBase::setLimits(int32_t _min, int32_t _max)
+    {
+        if (_min >= _max)
+        {
+            limit = false;
+            return;
+        }
+
+        limit = true;
+
+        min = _min << spr;
+        max = _max << spr;
     }
 }
