@@ -3,7 +3,7 @@
 <eagle version="9.5.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="25" unitdist="mil" unit="mil" style="lines" multiple="4" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
@@ -5287,8 +5287,8 @@ Based on the following sources:
 <plain>
 <text x="151.13" y="142.875" size="5.08" layer="97">...</text>
 <text x="151.13" y="145.415" size="2.54" layer="97">16x</text>
-<text x="124.46" y="52.07" size="1.524" layer="97" rot="R90" align="center-right">GND</text>
-<text x="127" y="52.07" size="1.524" layer="97" rot="R90" align="center-right">VCC</text>
+<text x="127" y="52.07" size="1.524" layer="97" rot="R90" align="center-right">GND</text>
+<text x="124.46" y="52.07" size="1.524" layer="97" rot="R90" align="center-right">VCC</text>
 <text x="129.54" y="52.07" size="1.524" layer="97" rot="R90" align="center-right">S0</text>
 <text x="132.08" y="52.07" size="1.524" layer="97" rot="R90" align="center-right">S1</text>
 <text x="134.62" y="52.07" size="1.524" layer="97" rot="R90" align="center-right">S2</text>
