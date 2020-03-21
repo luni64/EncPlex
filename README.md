@@ -3,11 +3,12 @@ EncPlex is a small Arduino library for reading **rotary encoders**. It works wit
 
 **Contents**
 <!-- vscode-markdown-toc -->
+* [Extras](#Extras)
 * [Prerequisites](#Prerequisites)
-* [Usage](#Usage)
+* [Usage of the Library](#UsageoftheLibrary)
 	* [Directly Connected Encoders](#DirectlyConnectedEncoders)
 	* [Array of Encoders](#ArrayofEncoders)
-	* [Multiplexing](#Multiplexing)
+	* [Multiplexed Encoders](#MultiplexedEncoders)
 		* [Using Shift Registers 74HC165](#UsingShiftRegisters74HC165)
 		* [Using the A/D MUX Breakout CD74HC4067](#UsingtheADMUXBreakoutCD74HC4067)
 	* [Callbacks](#Callbacks)
@@ -19,15 +20,27 @@ EncPlex is a small Arduino library for reading **rotary encoders**. It works wit
 	/vscode-markdown-toc-config -->
 <!-- /vscode-markdown-toc -->
 
+## <a name='Extras'></a>Hardware
+
+The extras folder of this repo contains [detailed information](extras/README.md) and production files for a test board to try out encoder multiplexing with 74165 shift registers. 
+
+![](extras/Boards/MPX_74165/MPX_74165_3d.jpg)
+
+It also contains information about using the readily available CD4067 breakout boards. Here an example of a compact assembly using two SparkFun BOB-09056. (https://www.sparkfun.com/products/9056)
+
+![](extras/Boards/MPX_4067/assembly3d.jpg)
+
+Finally, there is information and production files for a  8 rotary encoder test board.
+
+![](extras/Boards/ENCODER_BOARD/3d.jpg)
+
 
 ## <a name='Prerequisites'></a>Prerequisites
 EncPlex is written for the [ARM based PJRC Teensy boards](https://www.pjrc.com/teensy/) T-LC and T3.0 - T4.0. It is mainly aimed at manually operated, mechanical encoders, but also works with motor-driven optical encoders. However, for high speed encoders specialized libraries like the QUAD-Encoder-Library from mjs513 (https://github.com/mjs513/Teensy-4.x-Quad-Encoder-Library) might be a better choice.
 
-The extras folder of this repo contains [detailed information](extras/README.md) and production files for a few test boards. You can also use readily available multiplexer breakout boards for experimenting. Here an example of a compact assembly using two SparkFun BOB-09056 boards (https://www.sparkfun.com/products/9056)
 
-![](extras/Boards/MPX_4067/assembly3d.jpg)
 
-## <a name='Usage'></a>Usage of the Library
+## <a name='UsageoftheLibrary'></a>Usage of the Library
 
 ### <a name='DirectlyConnectedEncoders'></a>Directly Connected Encoders
 
@@ -95,7 +108,7 @@ void loop()
 
 ```
 
-### <a name='Multiplexing'></a>Multiplexed Encoders
+### <a name='MultiplexedEncoders'></a>Multiplexed Encoders
 
 If you have more encoders than free pins you can think of multiplexing them. EncPlex can be extended easily to support any multiplexer hardware you want to use. To demonstrate how that works, EncPlex contains two example classes. One handles multiplexing with two standard 8bit shift registers (74HC165), the other uses the readily available 16bit multiplexer CD74HC4067.
 
