@@ -13,7 +13,7 @@
 
 #include <cstdint>
 
-namespace PollingEncoder
+namespace EncPlex
 {
     #if defined(PLAIN_ENC_CALLBACK)
         using encCallback_t = void (*)(int32_t value);

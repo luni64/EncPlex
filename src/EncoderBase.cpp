@@ -2,8 +2,27 @@
 #include "Arduino.h"
 #include "core_pins.h"
 
-namespace PollingEncoder
+namespace EncPlex
 {
+
+    EncoderBase::EncoderBase()
+    {
+    }
+
+    void EncoderBase::set(int32_t val)
+    {
+        noInterrupts();
+        last = val << spr;
+        raw = val << spr;
+        value = val;
+        interrupts();
+    }
+
+    void EncoderBase::setStepsPerDetent(unsigned spd)
+    {
+        stepsPerDetent = spd;
+    }
+
     bool EncoderBase::update(uint32_t phaseA, uint32_t phaseB) // https://www.mikrocontroller.net/articles/Drehgeber
     {
         int current = 0, diff;
@@ -17,12 +36,16 @@ namespace PollingEncoder
             last = current;
             raw += (diff & 2) - 1;
 
-            if (limit)
+            // handle steps per detent
+            int newVal;
+            if (raw > 0)
             {
-                raw = std::min(max, std::max(min, raw));
+                newVal = (raw + stepsPerDetent / 2) / stepsPerDetent;
+            } else
+            {
+                newVal = (raw - stepsPerDetent / 2) / stepsPerDetent;
             }
 
-            int32_t newVal = raw >> spr;
             if (newVal != value)
             {
                 value = newVal;
@@ -36,17 +59,17 @@ namespace PollingEncoder
         return false;
     }
 
-    void EncoderBase::setLimits(int32_t _min, int32_t _max)
-    {
-        if (_min >= _max)
-        {
-            limit = false;
-            return;
-        }
+    // void EncoderBase::setLimits(int32_t _min, int32_t _max)
+    // {
+    //     if (_min >= _max)
+    //     {
+    //         limit = false;
+    //         return;
+    //     }
 
-        limit = true;
+    //     limit = true;
 
-        min = _min << spr;
-        max = _max << spr;
-    }
+    //     min = _min << spr;
+    //     max = _max << spr;
+    // }
 }

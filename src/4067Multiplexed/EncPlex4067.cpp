@@ -1,10 +1,10 @@
 #include "EncPlex4067.h"
 #include "Arduino.h"
 
-using namespace PollingEncoder;
+using namespace EncPlex;
 
-EncPlex4067::EncPlex4067(unsigned encoderCount, unsigned pinS0, unsigned pinS1, unsigned pinS2, unsigned pinS3, unsigned pinA, unsigned pinB)
-    : EncPlexBase(encoderCount),
+EncPlex4067::EncPlex4067(unsigned encoderCount, unsigned pinS0, unsigned pinS1, unsigned pinS2, unsigned pinS3, unsigned pinA, unsigned pinB, unsigned stepsPerDetent)
+    : EncPlexBase(encoderCount, stepsPerDetent),
       S0(pinS0), S1(pinS1), S2(pinS2), S3(pinS3),
       A(pinA), B(pinB)
 {
@@ -27,7 +27,7 @@ void EncPlex4067::begin()
 void EncPlex4067::tick()
 {
     digitalWriteFast(12, HIGH);
-    
+
     for (unsigned i = 0; i < encoderCount; i++)
     {
         digitalWriteFast(S0, i & 0b0001);
@@ -43,7 +43,7 @@ void EncPlex4067::tick()
         // {
         //     callback(0, encoders[i].read());
         // }
-       
+
     }
         digitalWriteFast(12, LOW);
 }

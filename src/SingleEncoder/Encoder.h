@@ -3,9 +3,9 @@
 #include "../EncoderBase.h"
 #include "core_pins.h"
 
-namespace PollingEncoder
+namespace EncPlex
 {
-    // Encoder implementation which reads phase A and B from two digital pins
+    // Simple Encoder implementation which reads phase A and B from two digital pins
     class Encoder : public EncoderBase
     {
      public:
