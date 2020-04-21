@@ -3,9 +3,10 @@
 namespace EncPlex
 {
     EncPlexBase::EncPlexBase(unsigned eCnt, unsigned spd)
-        : encoderCount(eCnt), encoders(new EncoderBase[eCnt])
+        : encoderCount(eCnt)
     {
-        for (int i = 0; i < eCnt; i++)
+        encoders = new EncoderBase[eCnt];
+        for (unsigned i = 0; i < eCnt; i++)
         {
             encoders[i].setStepsPerDetent(spd);
         }

@@ -13,7 +13,7 @@ namespace EncPlex
 
      protected:
         EncPlexBase(unsigned EncoderCount, unsigned stepsPerDetent);
-        uint32_t encoderCount;
+        const uint32_t encoderCount;
         EncoderBase* encoders;
 
         allCallback_t callback = nullptr;
