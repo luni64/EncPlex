@@ -2,4 +2,4 @@
 
 #include "74165Multiplexed/EncPlex74165.h"
 #include "4067Multiplexed/EncPlex4067.h"
-#include "SingleEncoder/Encoder.h"
+#include "EncSingle/EncSingle.h"

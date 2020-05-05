@@ -8,7 +8,7 @@ namespace EncPlex
         encoders = new EncoderBase[eCnt];
         for (unsigned i = 0; i < eCnt; i++)
         {
-            encoders[i].setStepsPerDetent(spd);
+            //encoders[i].setMode(spd);
         }
     }
 
