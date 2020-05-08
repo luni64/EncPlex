@@ -1,5 +1,7 @@
 #include "FreqGen.h"
 #include "EncPlex.h"
+
+ 
 using namespace EncPlex;
 
 void onFrequencyChanged(int encVal, int encDelta);
@@ -10,16 +12,18 @@ FreqGen_t generator;
 Encoder frequencyEncoder;
 Encoder dutyCycleEncoder;
 Encoder chnSelectEncoder;
-
+  
 void setup()
 {
-  while (!Serial && millis() < 1000) {}                           // wait for USB to connect
+  while (!Serial && millis() < 1000)
+  {
+  } // wait for USB to connect
 
-  generator.addOutputPins({9, 10, 11, 12, 14, 15});               // define up to 8 output pins (here for a T4.0)
+  generator.addOutputPins({9, 10, 11, 12, 14, 15}); // define up to 8 output pins (here for a T4.0)
 
   chnSelectEncoder.begin(0, 1, onChannelChanged);                 // encoder to select current channel on pin 0/1 using onChannelChanged callback
   frequencyEncoder.begin(2, 3, onFrequencyChanged);               // encoder to select freqency
-  dutyCycleEncoder.begin(4, 5, onDutyCycleChanged );              // encoder to select duty cylce
+  dutyCycleEncoder.begin(4, 5, onDutyCycleChanged);               // encoder to select duty cylce
   chnSelectEncoder.setLimits(0, generator.getNrOfChannels() - 1); // limit channel encoder range to actual number of defined channels
 
   onChannelChanged(0, 0); // print some info at startup
@@ -65,5 +69,3 @@ void onChannelChanged(int encVal, int encDelta)
   Serial.printf("\nSetup pin %u\n", generator.getPin(encVal));
   printChannelInfo(encVal);
 }
-
-

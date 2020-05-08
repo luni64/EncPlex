@@ -1,6 +1,8 @@
 #include "EncPlex74165.h"
 #include "../delay.h"
 
+#include "Arduino.h"
+
 using namespace EncPlex;
 
 EncPlex74165::EncPlex74165(unsigned encoderCount, unsigned pinLD, unsigned pinCLK, unsigned pinA, unsigned pinB, unsigned stepsPerDetent)
@@ -8,7 +10,7 @@ EncPlex74165::EncPlex74165(unsigned encoderCount, unsigned pinLD, unsigned pinCL
 {
     begin();
 }
-
+ 
 void EncPlex74165::begin()
 {
     pinMode(A, INPUT);
