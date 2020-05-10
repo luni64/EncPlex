@@ -24,7 +24,7 @@
     {
       "name": "T3_6",
       "includePath": [
-        "../../../../src/**",
+        "../../../src/**",
         "C:\\Arduino\\arduino-1.8.12\\hardware\\teensy\\avr\\cores\\teensy3"
       ],
       "forcedInclude": [
