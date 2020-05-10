@@ -1,7 +1,7 @@
 #include "Arduino.h"
 
 
-constexpr size_t bufSize = 10000;
+constexpr size_t bufSize = 10;
 
 struct
 {
@@ -11,12 +11,10 @@ struct
 } data[bufSize];
 
 
-
-
-
 void setup()
 {
     while (!Serial) {}
+    Serial.println("asdf");
 
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(0, INPUT_PULLUP);
@@ -54,8 +52,22 @@ void setup()
     }
 }
 
+int olda, oldb;
+
+
 void loop()
 {
-    digitalWriteFast(LED_BUILTIN, !digitalReadFast(LED_BUILTIN));
-    delay(200);
+    // digitalWriteFast(LED_BUILTIN, !digitalReadFast(LED_BUILTIN));
+    // delay(200);
+
+    int a = digitalReadFast(0);
+    int b = digitalReadFast(1);
+    int val = a & (b << 1);
+
+    if(a != olda || b!= oldb)
+    {
+        Serial.printf("x: %d%d\n", a, b);
+        olda = a;
+        oldb = b;
+    }
 }

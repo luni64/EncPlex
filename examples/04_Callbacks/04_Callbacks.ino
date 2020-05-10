@@ -1,10 +1,4 @@
 #include "Arduino.h"
-#include "OneButton.h"
-
-OneButton button1(1, true, true);
-OneButton button2(2, true,true);
-
-int someInt = 17;
 
 void myIntCallback(int cnt)
 {

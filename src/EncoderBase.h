@@ -7,6 +7,7 @@ namespace EncPlex
         quarter,          //          1          |       0/0        | standard for mech encoders
         quarterInv,       //          1          |       1/1        |
         half,             //          2          |   0/0 and 1/1    | seldom used
+        halfAlt,          //          2          |   1/0 and 0/1    | seldom used
         full              //          4          |       n.a.       | standard for optical encoders w/o detents
     };
 

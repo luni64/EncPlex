@@ -22,6 +22,10 @@ namespace EncPlex
                 stateMachine = &stateMachineHalf;
                 invert = 0b00;
                 break;
+            case CountMode::halfAlt:
+                stateMachine = &stateMachineHalf;
+                invert = 0b01;
+                break;
             default:
                 stateMachine = &stateMachineFull;
                 invert = 0b00;
