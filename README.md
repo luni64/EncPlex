@@ -1,3 +1,8 @@
+# This library is obsolete
+please use the EncoderTool https://github.com/luni64/EncoderTool instead.
+
+----
+
 # EncPlex
 EncPlex is a small Arduino library for reading **rotary encoders**. It works with encoders **connected directly** to digital pins and with encoders **connected via a multiplexer**. Unlike most other libraries, EncPlex uses a **polling algorithm** that generates a predictable processor load and is completely **insensitive to contact bounce**.
 
